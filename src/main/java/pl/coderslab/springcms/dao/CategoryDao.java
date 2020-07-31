@@ -15,7 +15,7 @@ import java.util.List;
 public class CategoryDao {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public void create(Category category) {
         entityManager.persist(category);

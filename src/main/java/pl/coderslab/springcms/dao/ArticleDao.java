@@ -14,7 +14,7 @@ import java.util.List;
 public class ArticleDao {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public void create(Article article) {
         entityManager.persist(article);
@@ -36,9 +36,9 @@ public class ArticleDao {
         Query query = this.entityManager.createQuery("SELECT a FROM Article a");
         return query.getResultList();
     }
-
+//3. Wyświetlamy tytuł, datę dodania oraz 200 pierwszych znaków danego artykułu.
     public List<Article> getLastFive(){
-        Query query = this.entityManager.createQuery("SELECT a FROM Article a ORDER BY a.createdOn DESC").setMaxResults(5);
+        Query query = this.entityManager.createQuery("SELECT a.title, a.createdOn, a.content FROM Article a ORDER BY a.createdOn DESC").setMaxResults(5);
         return query.getResultList();
     }
 

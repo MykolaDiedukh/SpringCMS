@@ -16,12 +16,11 @@ public class HomePageController {
     public HomePageController(ArticleDao articleDao){
         this.articleDao = articleDao;
     }
+
     @GetMapping("")
     @ResponseBody
-    public String home(){
-        List<Article> articles = articleDao.getAll();
-        return articles.stream()
-                .map(Article::toString)
-                .collect(Collectors.joining(", \r\n <br>"));
+    public List<Article> home(){
+        List<Article> articles = articleDao.getLastFive();
+        return articles;
     }
 }

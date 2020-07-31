@@ -14,15 +14,14 @@ public class Article {
     @Column(length = 200)
     private String title;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id",
             unique=true)
     private Author author;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Category> categories = new ArrayList<>();
 
-//    - (powiązanie relacją do klasy `Category`) - artykuł może należeć do wielu kategorii
     private String content;
     @Column(name = "created_on")
     private LocalDateTime createdOn;

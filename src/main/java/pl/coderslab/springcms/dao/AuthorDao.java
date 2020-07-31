@@ -14,7 +14,7 @@ import java.util.List;
 public class AuthorDao {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public void create(Author author) {
         entityManager.persist(author);
@@ -35,5 +35,9 @@ public class AuthorDao {
     public List<Author> getAll(){
         Query query = this.entityManager.createQuery("SELECT a FROM Author a");
         return query.getResultList();
+    }
+
+    public Author findById(long id) {
+        return entityManager.find(Author.class, id);
     }
 }
